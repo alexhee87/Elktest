@@ -1,5 +1,53 @@
 <?php
 
+include 'main.php';
+
+/*dd($persons);*/
+
+$newPerson = array();
+
+foreach ($persons as $row)
+{
+   if(isset($row['contact_no'])){
+       $row['Password']=md5($row['contact_no']);
+   }
+
+    if($row['age']<18){
+        unset($row['age']);
+
+    }
+    $newPerson[]=$row;
+}
+
+
+if(isset($_GET['random']) && $_GET['random']==1){
+
+    shuffle($newPerson);
+}
+
+
+if(isset($_GET['limit']) && $_GET['limit']>0){
+
+    $newPerson= array_slice($newPerson,0, $_GET['limit']);
+}
+
+dd($newPerson);
+
+/*
+for ($row = 0; $row < 2; $row++) {
+    echo "<p><b>Row number $row</b></p>";
+    echo "<ul>";
+    for ($col = 0; $col <= 3; $col++) {
+        echo "<li>".$persons[$row][$col]."</li>";
+    }
+    echo "</ul>";
+}
+*/
+?>
+
+
+
+
 //include the file "main.php" here
 
 //NOTE : we will have an array called $persons [refer to main], to print out the info and die, use dd($yourVar)
@@ -13,13 +61,13 @@
 //    Limit is only applicable if random is set to 1.
 
 /**
- * Useful readups :
- * http://php.net/manual/en/book.var.php
- * http://php.net/manual/en/language.references.php
- * http://php.net/manual/en/book.array.php
- */
+* Useful readups :
+* http://php.net/manual/en/book.var.php
+* http://php.net/manual/en/language.references.php
+* http://php.net/manual/en/book.array.php
+*/
 
 
 //when its done, create [your name].html, include it here, and print out the data in a list or table. At the end of the table, add in the average age of this group.
 
-//last but not least, commit all your files and changes and push to server.
+//last but not least
