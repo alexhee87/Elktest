@@ -28,7 +28,7 @@ foreach($dir as $d){
         <ul>
         <?php foreach($arr as $dir){ ?>
         <li>
-            <a href="<?php echo $dir; ?>"><?php echo $dir; ?></a>
+            <a href="<?php echo $dir; ?>" target="_blank"><?php echo $dir; ?></a>
         </li>
         <?php } ?>
         </ul>

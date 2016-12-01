@@ -19,6 +19,14 @@
  * http://php.net/manual/en/book.array.php
  */
 
+foreach($persons as &$person){
+    // ternary if..else which i talked about last week.
+    $person['password'] = isset($person['contact_no']) ? md5($person['contact_no']) : '';
+    if($person['age'] < 18){
+        unset($person['gender']);
+    }
+}
+
 //when its done, create [your name].html, include it here, and print out the data in a list or table. At the end of the table, add in the average age of this group.
 
 //last but not least, commit all your files and changes and push to server.
