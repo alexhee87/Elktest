@@ -1,6 +1,44 @@
 <?php
 
 //include the file "main.php" here
+include 'main.php';
+
+//dd ($persons);
+$newPersons = array();
+foreach ($persons as $person) {
+    if(isset ( $person['contact_no'])){
+        $person['password'] = md5($person['contact_no'] );
+    }
+    else{
+        $person['password']='';
+    }
+    if ((isset($person['age'])) &&((int)$person['age'] < 18)) {
+        //echo $person['age'];
+        //echo '<br>';
+        unset($person['age']);
+    }
+    $newPersons[] = $person;
+
+}
+
+if ((isset($_GET['random'])) && ($_GET['random']==1 )){
+    shuffle($newPersons);
+}
+
+//$newPersons1= array();
+
+if ((isset($_GET['limit'])) && ($_GET['limit']>0 )){
+//    for ($counter = 0; $counter <($_GET['limit']); $counter++) {
+//        $newPersons1[$counter] = $newPersons[$counter];
+//    }
+    echo count($newPersons);
+    $limit = $_GET['limit'];
+    //array_slice($newPersons,count($newPersons)-($_GET['limit']));
+    $newPersons = array_slice($newPersons, 0, $limit);
+}
+
+dd($newPersons);
+//dd($persons);
 
 //NOTE : we will have an array called $persons [refer to main], to print out the info and die, use dd($yourVar)
 // 1. Loop through all the array and add additional data to each person called password,
