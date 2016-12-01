@@ -65,5 +65,5 @@ function dd($info = array()){
     echo '<pre>';
     print_r($info);
     echo '</pre>';
-    die;
+//    die;
 }
