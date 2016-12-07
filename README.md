@@ -1,2 +1,0 @@
-# Elktest
-GIT Team training
