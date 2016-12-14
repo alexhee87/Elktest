@@ -28,7 +28,7 @@ if($random && $random == 1){
 
     //if limit is set, slice the array based on the total limit
     if(isset($limit) && $limit > 0){
-        $persons = array_slice($persons, 0, 3);
+        $persons = array_slice($persons, 0, $limit);
     }
 }
 
