@@ -20,8 +20,6 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
 	//Step 1 : initialize Question class
     $question = new Question();
 
-    echo $question->guess('757');die;
-
 	//Step 2 : Call the guess function, you want to put this in loop and break the loop if the answer is correct.
 	//Use guess function from the question to guess, make sure your input is in string.
 
@@ -50,7 +48,7 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
         $tips = $question->guess($guess);
         $existFrequency = $tips[0] + $tips[1];
 
-        if($tips == true){
+        if($tips === true){
             echo 'Correct answer is : '.$guess;
             $found = true;
             break;
@@ -77,7 +75,7 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
         $answer = $question->guess($guessNum);
 
         if($answer === true){
-            echo 'Correct answer is : '.$guessNum.' Total tries :'.$question->call.'<br/>';
+            echo 'Correct answer is : '.$guessNum.'<br/>';
             break;
         }
     }
