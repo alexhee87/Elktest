@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ElkenPHP.iml" filepath="$PROJECT_DIR$/.idea/ElkenPHP.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/elken.iml" filepath="$PROJECT_DIR$/.idea/elken.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/elktest.iml" filepath="$PROJECT_DIR$/.idea/elktest.iml" />
     </modules>
   </component>
 </project>

@@ -18,8 +18,65 @@ $totalRun = (isset($_GET['iteration']) && $_GET['iteration'] > 0) ? $_GET['itera
 for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
 
 	//Step 1 : initialize Question class
+    $question = new Question();
 
 	//Step 2 : Call the guess function, you want to put this in loop and break the loop if the answer is correct.
-	//Use guess function from the question to guess, make sure your input is in string. 
+	//Use guess function from the question to guess, make sure your input is in string.
 
+    $initialGuess = array(
+        '000',
+        '111',
+        '222',
+        '333',
+        '444',
+        '555',
+        '666',
+        '777',
+        '888',
+        '999'
+    );
+
+    $possibleCombination = array(
+        '012','021','120','102','201','210'
+    );
+
+    $correctNumber = array();
+    $totalTries = 0;
+    $found = false;
+
+    foreach($initialGuess as $guess){
+        $tips = $question->guess($guess);
+        $existFrequency = $tips[0] + $tips[1];
+
+        if($tips === true){
+            echo 'Correct answer is : '.$guess;
+            $found = true;
+            break;
+        }
+
+        if($existFrequency){
+            for($j=0; $j < $existFrequency; $j++){
+                $correctNumber[] = $guess{0};
+            }
+            $totalTries += $existFrequency;
+        }
+
+        if($totalTries == 3){
+            break;
+        }
+    }
+
+    if($found){
+        continue;
+    }
+
+    foreach($possibleCombination as $combination){
+        $guessNum = $correctNumber[$combination{0}].$correctNumber[$combination{1}].$correctNumber[$combination{2}];
+        $answer = $question->guess($guessNum);
+
+        if($answer === true){
+            echo 'Correct answer is : '.$guessNum.'<br/>';
+            break;
+        }
+    }
 }
