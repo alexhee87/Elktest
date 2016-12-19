@@ -64,7 +64,7 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
         }
         $j++;
     }
-    var_dump($Result);
+    //var_dump($Result);
     echo $j;
 
 }

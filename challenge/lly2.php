@@ -33,24 +33,41 @@ for($i = 0; $i < $totalRun; $i++) { // please do not remove this part
 
     $input1='123';
     $guessArray = array();
-        for ($x = 0; $x <= 999; $x=$x+111) {
+    for ($x = 0; $x <= 999; $x=$x+111) {
         //echo "The number is: $x <br>";
-        if ($x===0){$results = $obj->guess('000');
-        }else{$results = $obj->guess($x);        }
+        if ($x === 0){
+            $results = $obj->guess('000');
+        }else{
+            $results = $obj->guess($x);        
+        }
 
-        if ($results[0] == 1||$results[1] == 1) {
-            if (!isset($guessArray[0])){$guessArray[0]=$x/111;}
-            elseif (!isset($guessArray[1])){$guessArray[1]=$x/111;}
-            elseif (!isset($guessArray[2])){$guessArray[2]=$x/111;}
-        }else if ($results[0] == 2 || $results[1] == 2){
+
+        if ($results[0] == 1 || $results[1] == 1) {
+
+            //@remark it can be auto assigned
+            $guessArray[] = $x/111;
+
+            /*
+            if(!isset($guessArray[0])){
+                $guessArray[0]=$x/111;
+            }elseif(!isset($guessArray[1])){
+                $guessArray[1]=$x/111;
+            }elseif(!isset($guessArray[2])){
+                $guessArray[2]=$x/111;
+            }
+            */
+        }else if($results[0] == 2 || $results[1] == 2){
+            $guessArray[] = $x/111;
+            $guessArray[] = $x/111;
+            /*
             if (!isset($guessArray[0])){
                 $guessArray[0]=$x/111;
                 $guessArray[1]=$x/111;
-            }
-            else {
+            } else {
                 $guessArray[1]=$x/111;
                 $guessArray[2]=$x/111;
             }
+            */
         }
     }
 
@@ -59,7 +76,9 @@ for($i = 0; $i < $totalRun; $i++) { // please do not remove this part
         $answer = $obj->guess($guessArray[0].$guessArray[1].$guessArray[2]);
         if($answer === true){
             echo 'Correct answer is : '.$guessArray[0].$guessArray[1].$guessArray[2].'<br/>';
-            break;
+            //@Remarks : Instead of break, you should use continue because you will break the initial loop if you use break
+            continue;
+            //break;
         }
 
         for ($y = 1; $y < sizeof($guessArray); $y++) {
@@ -81,6 +100,9 @@ for($i = 0; $i < $totalRun; $i++) { // please do not remove this part
                 echo 'Correct answer is : '.$tmpArr[0].$tmpArr[1].$tmpArr[2].'<br/>';
                 break;
             }
+
+            //Remark: You are missing out some other cases here
+            echo 'Could not find the answer</br>';
 
         }
 
