@@ -71,6 +71,7 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
     }
 
     foreach($possibleCombination as $combination){
+        //lets say $correctNumber is array('7','7','5'). If current combination is 021, it means we will check the position 0,2,1 of the array (0=>'7',1=>'7',2=>'5'), which mean it will yield the result of 757.
         $guessNum = $correctNumber[$combination{0}].$correctNumber[$combination{1}].$correctNumber[$combination{2}];
         $answer = $question->guess($guessNum);
 
