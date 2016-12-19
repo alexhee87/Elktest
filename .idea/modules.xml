@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/ElkenPHP.iml" filepath="$PROJECT_DIR$/.idea/ElkenPHP.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/elken.iml" filepath="$PROJECT_DIR$/.idea/elken.iml" />
     </modules>
   </component>
