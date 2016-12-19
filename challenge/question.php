@@ -10,7 +10,7 @@ class Question
 		$this::$loop++;
 		$this->totalTries = 0;
 		$this->number = str_split(str_pad(rand(0,999), 3, 0, STR_PAD_LEFT));
-		echo '=========<br/>Guessing for this number : '.implode('',$this->number).'<br/>';
+		echo '=========<Guessing for this number : '.implode('',$this->number).'<br/>';
 	}
 
 	public function guess($num){

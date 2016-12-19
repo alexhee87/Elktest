@@ -24,13 +24,17 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
     $randomNumber = "000";
     $getResult = false;
     $j = 1;
-    $Result = array();
-    $ResultCount=0;
+    $Result = array(); //Remarks : always declare variable in small letter
+    $ResultCount=0; //Remarks : be consistent, space before and after the assign
     $arrayResult;
+
+    //@Remarks you forgot another case, if the answer is 000,111...999.
+    //Indent the code properly with 4 space/tab to space[4 spaces]. 
+    
     while($getResult==false) {
         $myResult = $myQuestion->guess($randomNumber);
 
-        if ($myResult[0]>0 || $myResult[1]>0)
+        if (($myResult[0]>0 || $myResult[1]>0) && $randomNumber < 1000)
         {
            for($k = 0; $k < $myResult[0]; $k++)
             {
@@ -41,30 +45,26 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
                 $getResult = true;
                 break;
             }
+        }elseif($randomNumber > 999 || count($Result) == 3){
+            break;
         }
-        else{
-           if ($j==10)
-           {
-               break;
-           }
-        }
+
         $randomNumber = $randomNumber + 111;
-        $j++;
     }
 
     $getResult = false;
-    while($getResult==false) {
+    $test = '';
+    while(!$getResult) {
         $test = (string)$Result[0] . (string)$Result[1] . (string)$Result[2];
         $myResult = $myQuestion->guess($test);
         if ($myResult===true) {
-            $getResult = true;
+            break;
          } else {
             shuffle($Result);
             $getResult = false;
         }
-        $j++;
     }
     //var_dump($Result);
-    echo $j;
+    echo 'Bryan answer is : '.$test.'<br/>';
 
 }
