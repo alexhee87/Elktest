@@ -71,6 +71,7 @@ for($i = 0; $i < $totalRun; $i++) { // please do not remove this part
         }
     }
 
+    //var_dump($guessArray);
     if ((isset($guessArray[0])) && (isset($guessArray[1])) && (isset($guessArray[2]))){
 
         $answer = $obj->guess($guessArray[0].$guessArray[1].$guessArray[2]);
@@ -80,14 +81,27 @@ for($i = 0; $i < $totalRun; $i++) { // please do not remove this part
             continue;
             //break;
         }
+        //echo 'array 0 : ';
+        //var_dump($guessArray);
+
+        $tmpArr=switch_array($guessArray);
+        //echo 'array 0a';
+        //var_dump($tmpArr);
+        $answer = $obj->guess($tmpArr[0].$tmpArr[1].$tmpArr[2]);
+        if($answer === true){
+            echo 'Correct answer is : '.$tmpArr[0].$tmpArr[1].$tmpArr[2].'<br/>';
+            break;
+        }
 
         for ($y = 1; $y < sizeof($guessArray); $y++) {
 
             $tmp_int = $guessArray[0];
-            for ($y = 1; $y < sizeof($guessArray); $y++) {
-                $guessArray[$y - 1] = $guessArray[$y];
+            for ($z = 1; $z < sizeof($guessArray); $z++) {
+                $guessArray[$z - 1] = $guessArray[$z];
             }
             $guessArray[sizeof($guessArray) - 1] = $tmp_int;
+            //echo 'array ' .$y.': ';
+            //var_dump($guessArray);
             $answer = $obj->guess($guessArray[0].$guessArray[1].$guessArray[2]);
             if($answer === true){
                 echo 'Correct answer is : '.$guessArray[0].$guessArray[1].$guessArray[2].'<br/>';
@@ -95,14 +109,19 @@ for($i = 0; $i < $totalRun; $i++) { // please do not remove this part
             }
 
             $tmpArr=switch_array($guessArray);
+            //echo 'array ' .$y.'a: ';
+            //var_dump($tmpArr);
             $answer = $obj->guess($tmpArr[0].$tmpArr[1].$tmpArr[2]);
             if($answer === true){
                 echo 'Correct answer is : '.$tmpArr[0].$tmpArr[1].$tmpArr[2].'<br/>';
                 break;
             }
 
+
             //Remark: You are missing out some other cases here
-            echo 'Could not find the answer</br>';
+            if($answer === false){
+                echo 'Could not find the answer</br>';
+            }
 
         }
 
