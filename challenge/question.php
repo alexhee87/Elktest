@@ -3,12 +3,17 @@
 class Question
 {
 	private $number;
+	private $totalTries;
+	private static $loop = 0;
 
 	public function __construct(){
-		$this->number = str_split('775');
+		$this::$loop++;
+		$this->totalTries = 0;
+		$this->number = str_split(str_pad(rand(0,999), 3, 0, STR_PAD_LEFT));
 	}
 
 	public function guess($num){
+		$this->totalTries++;
 		$guess = str_split($num);
 
 		$samePosition = 0;
@@ -31,6 +36,13 @@ class Question
 			}
 		}
 
-		return ($samePosition == 3) ? true : array($samePosition,$diffPosition);
+		if($samePosition == 3){
+			$answer = implode('',$this->number);
+			echo 'Total tries for loop '.$this::$loop.' is '.$this->totalTries.' tries. (Answer :'.$answer.' )<br/>';
+			return true;
+		}
+
+		return array($samePosition,$diffPosition);
+
 	}
 }
