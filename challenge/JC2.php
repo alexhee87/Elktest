@@ -20,7 +20,7 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
     //Step 1 : initialize Question class
     $objQuestion = new Question();
     $guessPossibleNumber='';
-    for ($counter=0;$counter<999;$counter=$counter+111) {
+    for ($counter=0;$counter<=999;$counter=$counter+111) {
 
         $result = $objQuestion->guess(strval(($counter=='0') ? '000' : $counter));
         if ( $result[0] >=1) {
@@ -29,6 +29,7 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
             for($counterResult =1;$counterResult<=$result[0];$counterResult++){
 
                 $guessPossibleNumber =   $guessPossibleNumber . strval($counter){0}  ;
+
             }
 //            if ($result[0]==1) {
 //                $guessPossibleNumber =   $guessPossibleNumber . substr(strval($counter), 0, 1) ;
@@ -54,6 +55,7 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
         '012','021','120','102','201','210'
     );
 
+    print_r($guessPossibleNumber);
     foreach ($possibleCombination as $rowArr){
 
         $GuessNum=$guessPossibleNumber[$rowArr{0}].$guessPossibleNumber[$rowArr{1}].$guessPossibleNumber[$rowArr{2}];
