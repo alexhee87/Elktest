@@ -76,7 +76,6 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
             '012','021','120','102','201','210'
         );
 
-        print_r($guessPossibleNumber);
         foreach ($possibleCombination as $rowArr){
 
             $GuessNum=$guessPossibleNumber[$rowArr{0}].$guessPossibleNumber[$rowArr{1}].$guessPossibleNumber[$rowArr{2}];
