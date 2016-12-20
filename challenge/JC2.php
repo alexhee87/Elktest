@@ -20,18 +20,36 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
     //Step 1 : initialize Question class
     $objQuestion = new Question();
     $guessPossibleNumber='';
+    $flagFound = false;
     for ($counter=0;$counter<=999;$counter=$counter+111) {
 
         $result = $objQuestion->guess(strval(($counter=='0') ? '000' : $counter));
+
+        if($result === true){
+            echo '***** This is the Result = '.$counter. '*****<br>' ;
+            $flagFound=true;
+            break;
+        }
+
         if ( $result[0] >=1) {
             echo "Guess Number" . strval($counter).'<br>' ;
-
             for($counterResult =1;$counterResult<=$result[0];$counterResult++){
 
+            if ($result[0]==1) {
                 $guessPossibleNumber =   $guessPossibleNumber . strval($counter){0}  ;
 
             }
-//            if ($result[0]==1) {
+            else if ($result[0]==2){
+                $guessPossibleNumber =   $guessPossibleNumber . strval($counter){0}. strval($counter){0} ;
+
+            }
+            else if ($result[0]==3){
+                $guessPossibleNumber =   $guessPossibleNumber . strval($counter){0}. strval($counter){0}. strval($counter){0} ;
+
+            }
+
+
+                //            if ($result[0]==1) {
 //                $guessPossibleNumber =   $guessPossibleNumber . substr(strval($counter), 0, 1) ;
 //
 //            }
@@ -46,27 +64,33 @@ for($i = 0; $i < $totalRun; $i++){ // please do not remove this part
 //                $guessPossibleNumber =   $guessPossibleNumber . substr(strval($counter), 0, 1) ;
 //
 //            }
+            }
+
 
         }
 
     }
 
-    $possibleCombination = array(
-        '012','021','120','102','201','210'
-    );
+    if ($flagFound != true){
+        $possibleCombination = array(
+            '012','021','120','102','201','210'
+        );
 
-    print_r($guessPossibleNumber);
-    foreach ($possibleCombination as $rowArr){
+        print_r($guessPossibleNumber);
+        foreach ($possibleCombination as $rowArr){
 
-        $GuessNum=$guessPossibleNumber[$rowArr{0}].$guessPossibleNumber[$rowArr{1}].$guessPossibleNumber[$rowArr{2}];
-        $result = $objQuestion->guess($GuessNum);
+            $GuessNum=$guessPossibleNumber[$rowArr{0}].$guessPossibleNumber[$rowArr{1}].$guessPossibleNumber[$rowArr{2}];
+            $result = $objQuestion->guess($GuessNum);
 
-        if($result === true){
-            echo "This is the Result = ".$GuessNum;
-            break;
+            if($result === true){
+                echo '***** This is the Result = '.$GuessNum . '*****<br>';
+                break;
+            }
+
         }
 
     }
+
 
 
 }
