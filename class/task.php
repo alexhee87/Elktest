@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Work in a pair. Create a system to read and write to database. 
+ * Work in a pair. Create a system to read and write to database.
  * Create a system to crawl any site url. Get the html output and download the image into the 
  * respective folder. For example, you can name the folder as www.somesite.com. 
  * Once you retrieve all the pictures and placed it properly, go through each pictures within 
@@ -18,3 +18,10 @@
  * Regular expression to get all the images url
  * database images information that you might want to keep : sitename | local_path | picture_name | ext_type | created_at | size | dimension_x | dimension_y
  */
+
+$page = file_get_contents('http://www.imdb.com');
+//echo $page;
+echo '<pre>';
+preg_match_all('/(https?:\/\/\S+\.(?:jpg|png|gif))/', $page, $images);
+
+print_r($images);
