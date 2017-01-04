@@ -22,6 +22,6 @@
 $page = file_get_contents('http://www.imdb.com');
 //echo $page;
 echo '<pre>';
-preg_match_all('/(https?:\/\/\S+\.(?:jpg|png|gif))/', $page, $images);
+preg_match_all('/(?:https?:\/\/\S+\.(?:jpg|png|gif))/', $page, $images);
 
 print_r($images);
