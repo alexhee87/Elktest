@@ -1,0 +1,12 @@
+CREATE TABLE `imageinfo` (
+ `sitename` varchar(200) NOT NULL,
+ `local_path` varchar(255) NOT NULL,
+ `picture_name` varchar(255) NOT NULL,
+ `ext_type` varchar(50) NOT NULL,
+ `created_at` datetime NOT NULL,
+ `size` int(11) NOT NULL,
+ `dimension_x` int(11) NOT NULL,
+ `dimension_y` int(11) NOT NULL,
+ `ID` int(11) NOT NULL AUTO_INCREMENT,
+ PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=589 DEFAULT CHARSET=latin1
